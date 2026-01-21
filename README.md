@@ -31,7 +31,7 @@ A simple machine learning project using sklearn on the Iris dataset.
 - Compare model performance
 - Reduce feature dimensions to observe performance changes
 
-3. Student Pass Classification (Machine Learning)
+### 3. Student Pass Classification (Machine Learning)
 
 A small machine learning experiment using a real-world-style CSV dataset,
 with a focus on **model evaluation and result reliability on small data**.
