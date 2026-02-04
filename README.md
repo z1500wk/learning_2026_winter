@@ -58,20 +58,20 @@ with a focus on **model evaluation and result reliability on small data**.
 
 
 **What I did (v1)**
-• Load and preprocess CSV data with pandas and numpy
-• Train a baseline model (DummyClassifier) for comparison
-• Train and compare Logistic Regression and KNN
-• Test single-feature models instead of only multi-feature models
-• Observe that very high accuracy (e.g. 1.0) can be misleading on small datasets
+- Load and preprocess CSV data with pandas and numpy
+- Train a baseline model (DummyClassifier) for comparison
+- Train and compare Logistic Regression and KNN
+- Test single-feature models instead of only multi-feature models
+- Observe that very high accuracy (e.g. 1.0) can be misleading on small datasets
 
 **Key observations (v1)**
-• Some single features achieved perfect accuracy (1.0) on small data
-• After shuffling features only in the training set, model performance collapsed
-• This indicates that certain features were effectively acting as label proxies
-• Learned to distinguish between:
-• genuinely useful features
-• and features that leak answer information
-￼
+- Some single features achieved perfect accuracy (1.0) on small data
+- After shuffling features only in the training set, model performance collapsed
+- This indicates that certain features were effectively acting as label proxies
+- Learned to distinguish between:
+- genuinely useful features
+- and features that leak answer information
+
 **3.1 Feature Engineering & Data Leakage Check**
 An extension of the student pass experiment, focusing on how to judge whether a feature is truly useful.
 
@@ -81,18 +81,18 @@ An extension of the student pass experiment, focusing on how to judge whether a 
 Instead of asking “Which model gets the highest score?”,
 I focused on “Which features provide stable, non-cheating signal?”.
 *Experiments*
-• Single-feature classification (hours_study, practice_tests)
-• Baseline comparison with DummyClassifier
-• Train/test split for intuitive understanding
-• Shuffle feature values only inside the training set as a sanity check
+- Single-feature classification (hours_study, practice_tests)
+- Baseline comparison with DummyClassifier
+- Train/test split for intuitive understanding
+- Shuffle feature values only inside the training set as a sanity check
 
 *Findings*
-• Features that directly encode or strongly bind to the label:
-• achieve unrealistically high accuracy
-• collapse immediately after training-set shuffling
-• More realistic features:
-• improve accuracy probabilistically
-• do not break instantly when disturbed
+- Features that directly encode or strongly bind to the label:
+- achieve unrealistically high accuracy
+- collapse immediately after training-set shuffling
+- More realistic features:
+- improve accuracy probabilistically
+- do not break instantly when disturbed
 
 **3.2 Revised Dataset (v2)**
 To better simulate a real-world scenario, I generated a second version of the dataset.
@@ -100,22 +100,22 @@ To better simulate a real-world scenario, I generated a second version of the da
 📁 Path: students_pass_classification/students_pass_v2.csv
 
 *Dataset (v2)*
-• Generated using multiple features + random noise
-• Label is not determined by any single feature
-• Better reflects uncertainty and variability in real data
+- Generated using multiple features + random noise
+- Label is not determined by any single feature
+- Better reflects uncertainty and variability in real data
 
 *Observations (v2)*
-• Single features such as hours_study still improve performance
-• Accuracy is high but not perfect
-• Shuffling the training set does not instantly destroy performance
-• Demonstrates the difference between:
-• data leakage
-• and probabilistic but valid feature signals
+- Single features such as hours_study still improve performance
+- Accuracy is high but not perfect
+- Shuffling the training set does not instantly destroy performance
+- Demonstrates the difference between:
+- data leakage
+- and probabilistic but valid feature signals
 
 **What I learned**
-• High accuracy on small data can be a red flag
-• Baseline models are essential for interpretation
-• Feature usefulness should be tested, not assumed
-• Data leakage can be detected with simple, controlled experiments
-• Stable average behavior matters more than a single lucky split
+- High accuracy on small data can be a red flag
+- Baseline models are essential for interpretation
+- Feature usefulness should be tested, not assumed
+- Data leakage can be detected with simple, controlled experiments
+- Stable average behavior matters more than a single lucky split
 
